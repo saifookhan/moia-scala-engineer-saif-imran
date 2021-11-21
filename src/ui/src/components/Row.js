@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 
-const Row = () => {
-  const [trainPosition, setTrainPosition] = useState(0);
+const Row = (props) => {
+  const [trainPosition, setTrainPosition] = useState(props.position);
+  const [trainDirection, setTrainDirection] = useState(props.direction);
 
-  return <div>_</div>;
+  return (
+    <tr style={{ backgroundColor: trainDirection ? "#bae7ff" : "#a0d911" }}>
+      <td>1</td>
+      <td>{trainDirection ? "RIGHT" : "LEFT"}</td>
+      {Array.from({ length: 32 }).map((_, index) => (
+        <td key={index}>{trainPosition === index ? "🚆" : " "}</td>
+      ))}
+    </tr>
+  );
 };
 
 export default Row;

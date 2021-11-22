@@ -84,4 +84,23 @@ export default class TrainService {
       Math.abs(endTerminal - startTerminal)
     );
   }
+
+  public async getRequestCount() {
+    return this.requestQueue.length;
+  }
+
+  public async getTrainInfo() {
+    console.log({
+      name: this.name,
+      terminal: this.terminal,
+      direction: this.direction,
+      requestQueueLength: this.requestQueue.length,
+    });
+    return {
+      name: this.name,
+      terminal: this.terminal,
+      direction: this.direction === 1 ? true : false,
+      passengers: this.requestQueue.length,
+    };
+  }
 }

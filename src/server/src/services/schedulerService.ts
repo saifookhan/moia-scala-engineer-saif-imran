@@ -27,8 +27,9 @@ export default class SchedulerService {
       if (newMinCost < minCost) {
         minCostTrain = train;
         minCost = newMinCost;
-        console.log("Minimum cost train found " + train, newMinCost, minCost);
-        break;
+        console.log(
+          "Minimum cost train found: " + train.name + " with cost: " + minCost
+        );
       }
     }
 
@@ -51,8 +52,13 @@ export default class SchedulerService {
     }
   }
 
-  public getAllTrainsStats() {
-    console.log(this.trains);
-    return this.trains;
+  public async getAllTrainsStats() {
+    var trains = this.trains;
+
+    return await Promise.all(
+      trains.map(async (train) => {
+        return await train.getTrainInfo();
+      })
+    );
   }
 }

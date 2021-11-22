@@ -39,7 +39,7 @@ function DashboardContextProvider(props) {
       console.log("API call");
       fetchData();
     }, 500);
-  }, 5000);
+  }, 2000);
 
   return (
     <DashboardContext.Provider

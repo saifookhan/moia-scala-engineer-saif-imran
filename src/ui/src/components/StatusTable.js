@@ -20,6 +20,7 @@ function StatusTable(props) {
           <tr>
             <th>#</th>
             <th>Direction</th>
+            <th>Passengers</th>
             {terminalColumns.map((val, index) => (
               <th key={val.dataIndex}>{val.dataIndex}</th>
             ))}
@@ -31,8 +32,9 @@ function StatusTable(props) {
               <Row
                 key={train.name}
                 name={train.name}
-                position={train.position}
+                position={train.terminal}
                 direction={train.direction}
+                passengers={train.passengers}
               />
             );
           })}

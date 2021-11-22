@@ -18,7 +18,7 @@ export default class ServiceRequestService {
     this.status = STATUS.NOT_STATED;
   }
 
-  updateProgressStatus(terminal: number) {
+  public updateProgressStatus(terminal: number) {
     if (this.status == STATUS.NOT_STATED && terminal === this.startTerminal)
       this.status = STATUS.STARTED;
     if (this.status == STATUS.STARTED && terminal == this.endTerminal)

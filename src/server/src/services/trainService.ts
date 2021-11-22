@@ -12,8 +12,8 @@ import { IServiceRequestStatus } from "@/interfaces/IServiceRequestStatus";
 
 @Service()
 export default class TrainService {
-  private ServiceRequest = Container.get(ServiceRequestService);
-  private Scheduler = Container.get(SchedulerService);
+  // private ServiceRequest = Container.get(ServiceRequestService);
+  // private Scheduler = Container.get(SchedulerService);
 
   public name: string;
   public terminal: number;
@@ -25,54 +25,29 @@ export default class TrainService {
     this.name = "anon";
     this.terminal = 0;
     this.direction = 1;
+    this.requestQueue = new Queue<ServiceRequestService>();
   }
 
-  move() {
-    if (this.requestQueue.length == 0) return;
-
-    var request = this.requestQueue[this.requestQueue.length - 1]; // requests are processed in queue to prevent starvation of some request. random/closest request processing might give better performance/service time.
-    var startTerminal = request.startTerminal;
-    var endTerminal = request.endTerminal;
-    var currentTerminal = this.terminal;
-
-    // direction = to minus from
-    if (request.status === this.ServiceRequest.status.includes("NOT_STARTED")) {
-      // move to start point of first request in request queue
-      var difference = startTerminal - currentTerminal;
-      this.direction = difference / Math.abs(difference === 0 ? 1 : difference);
-    } else if (
-      request.status === this.ServiceRequest.status.includes("STARTED")
-    ) {
-      // move to end point of first request in request queue
-      var difference = endTerminal - startTerminal;
-      this.direction = difference / Math.abs(difference === 0 ? 1 : difference);
-    }
-
-    var nextTerminal = this.terminal + this.direction;
-    var terminal = Math.max(
-      0,
-      Math.min(nextTerminal, this.Scheduler.MAX_TERMINAL - 1)
-    );
-
-    var uncompletedRequests: Queue<ServiceRequestService> =
-      new Queue<ServiceRequestService>();
-
-    for (let item of uncompletedRequests) {
-      console.log(item);
-      item.updateProgressStatus(terminal);
-      if (item.getStatus() !== this.ServiceRequest.status)
-        // remove completed requests
-        uncompletedRequests.append(item);
-      else console.log("request completed: " + item);
-    }
-
-    this.requestQueue = uncompletedRequests;
-  }
-
-  addRequest(serviceRequest: IServiceRequest) {
+  addRequest(serviceRequest: ServiceRequestService) {
+    console.log("here" + JSON.stringify(serviceRequest));
     serviceRequest.updateProgressStatus(this.terminal);
-    this.requestQueue.append(serviceRequest);
+    console.log("here" + JSON.stringify(serviceRequest) + this.terminal);
+
+    this.requestQueue.enqueue(serviceRequest);
 
     console.log(this.requestQueue);
+  }
+
+  async getServiceCost(serviceRequest: IServiceRequest) {
+    console.log(serviceRequest);
+    console.log(serviceRequest.startTerminal);
+    var startTerminal = serviceRequest.startTerminal;
+    var endTerminal = serviceRequest.endTerminal;
+    var currentTerminal = this.terminal;
+
+    return (
+      Math.abs(startTerminal - currentTerminal) +
+      Math.abs(endTerminal - startTerminal)
+    );
   }
 }

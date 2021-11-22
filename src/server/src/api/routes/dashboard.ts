@@ -17,6 +17,7 @@ export default (app: Router) => {
 
     async (req: Request, res: Response) => {
       try {
+        LoggerInstance.info("get /dashboard called");
         const currentStatus = await service.getCurrentState();
 
         return res.status(200).send(currentStatus);

@@ -1,5 +1,5 @@
-import { IServiceRequest } from "@/interfaces/IServiceRequest";
-import Container, { Service } from "typedi";
+import IServiceRequest from "../interfaces/IServiceRequest";
+import { Service } from "typedi";
 import ServiceRequestService from "./serviceRequestService";
 import TrainService from "./trainService";
 
@@ -49,5 +49,10 @@ export default class SchedulerService {
     for (const train of this.trains) {
       train.move();
     }
+  }
+
+  public getAllTrainsStats() {
+    console.log(this.trains);
+    return this.trains;
   }
 }

@@ -20,7 +20,8 @@ export default (app: Router) => {
         LoggerInstance.info("get /dashboard called");
 
         await req.app.locals.scheduler.proceed();
-        const currentStatus = await service.getCurrentState();
+        // const currentStatus = await service.getCurrentState();
+        const currentStatus = await req.app.locals.scheduler.getAllTrainsStats();
 
         return res.status(200).send(currentStatus);
       } catch (e) {

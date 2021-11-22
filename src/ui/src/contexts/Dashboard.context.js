@@ -1,13 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { getDashboardStatus } from "../helpers/serverModule/serverModule";
 
 const DashboardContext = React.createContext();
 
+const useInterval = (callback, delay) => {
+  const savedCallback = useRef();
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+};
+
 function DashboardContextProvider(props) {
-  const [dashboardState, setDashboardState] = useState(
-    Array.from({ length: 32 }).map((_, index) => {
-      return { name: index + 1, position: 0, direction: true };
-    })
-  );
+  const [dashboardState, setDashboardState] = useState([]);
+
+  async function fetchData() {
+    const response = await getDashboardStatus();
+    setDashboardState(response.data);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useInterval(() => {
+    // Do some API call here
+    setTimeout(() => {
+      console.log("API call");
+      fetchData();
+    }, 500);
+  }, 5000);
 
   return (
     <DashboardContext.Provider

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Row = (props) => {
   const [trainPosition, setTrainPosition] = useState(props.position);
   const [trainDirection, setTrainDirection] = useState(props.direction);
+
+  useEffect(() => {
+    setTrainPosition(props.position);
+    setTrainDirection(props.direction);
+  }, [props]);
 
   return (
     <tr style={{ backgroundColor: trainDirection ? "#bae7ff" : "#a0d911" }}>

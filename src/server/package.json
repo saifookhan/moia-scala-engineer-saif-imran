@@ -45,6 +45,8 @@
     "moment": "^2.29.0",
     "moment-timezone": "^0.5.31",
     "morgan": "^1.10.0",
+    "queue": "^6.0.2",
+    "queue-typescript": "^1.0.1",
     "reflect-metadata": "^0.1.13",
     "typedi": "^0.8.0",
     "winston": "^3.3.3"

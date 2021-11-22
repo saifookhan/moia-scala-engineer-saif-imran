@@ -6,7 +6,7 @@ const Row = (props) => {
 
   return (
     <tr style={{ backgroundColor: trainDirection ? "#bae7ff" : "#a0d911" }}>
-      <td>1</td>
+      <td>{props.name}</td>
       <td>{trainDirection ? "RIGHT" : "LEFT"}</td>
       {Array.from({ length: 32 }).map((_, index) => (
         <td key={index}>{trainPosition === index ? "🚆" : " "}</td>

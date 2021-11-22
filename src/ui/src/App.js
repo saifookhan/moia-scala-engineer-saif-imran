@@ -1,21 +1,21 @@
 import "./App.css";
-import "antd/dist/antd.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row } from "react-bootstrap";
 
 import StatusTable from "./components/StatusTable";
-import { Layout } from "antd";
-
-const { Content } = Layout;
+import { DashboardContextProvider } from "./contexts";
 
 function App() {
   return (
-    <div className="App">
-      <Layout className="layout">
-        <Content style={{ padding: "0 50px" }}>
-          <StatusTable />
-        </Content>
-      </Layout>
-    </div>
+    <DashboardContextProvider>
+      <div className="App">
+        <Container>
+          <Row>
+            <StatusTable />
+          </Row>
+        </Container>
+      </div>
+    </DashboardContextProvider>
   );
 }
 

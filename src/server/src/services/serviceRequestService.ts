@@ -10,18 +10,25 @@ export enum STATUS {
 export default class ServiceRequestService {
   public startTerminal: number;
   public endTerminal: number;
-  public requestedTime: boolean;
+  public requestedTime: number;
 
   public status: STATUS;
 
-  constructor() {
+  constructor(
+    startTerminal: number,
+    endTerminal: number,
+    requestedTime: number
+  ) {
+    this.startTerminal = startTerminal;
+    this.endTerminal = endTerminal;
+    this.requestedTime = requestedTime;
     this.status = STATUS.NOT_STATED;
   }
 
   public updateProgressStatus(terminal: number) {
-    if (this.status == STATUS.NOT_STATED && terminal === this.startTerminal)
+    if (this.status === STATUS.NOT_STATED && terminal === this.startTerminal)
       this.status = STATUS.STARTED;
-    if (this.status == STATUS.STARTED && terminal == this.endTerminal)
+    if (this.status === STATUS.STARTED && terminal === this.endTerminal)
       this.status = STATUS.ENDED;
   }
 

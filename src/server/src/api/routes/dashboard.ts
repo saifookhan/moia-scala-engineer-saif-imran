@@ -18,11 +18,13 @@ export default (app: Router) => {
     async (req: Request, res: Response) => {
       try {
         LoggerInstance.info("get /dashboard called");
+
+        await req.app.locals.scheduler.proceed();
         const currentStatus = await service.getCurrentState();
 
         return res.status(200).send(currentStatus);
       } catch (e) {
-        Logger.error(e);
+        LoggerInstance.error(e);
         if (e.message.includes("missing"))
           return res.status(400).send(e.message);
         return res.status(500).send(e.message);

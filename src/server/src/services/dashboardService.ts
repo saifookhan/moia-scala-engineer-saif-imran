@@ -12,7 +12,6 @@ export default class DashboardService {
     return this.TrainInfoModel!;
   };
 
-  // getCurrentState = async (): Promise<ITrainInfo[]> => {
   getCurrentState = async (): Promise<any> => {
     try {
       var positions: ITrainInfo[] = [].concat(

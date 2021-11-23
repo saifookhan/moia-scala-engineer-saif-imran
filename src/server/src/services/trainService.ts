@@ -1,22 +1,13 @@
-import Container, { Service } from "typedi";
-import { ITrainInfo } from "../interfaces/ITrainInfo";
+import { Service } from "typedi";
 import { Queue } from "queue-typescript";
-
-var queue = require("queue");
 
 import IServiceRequest from "../interfaces/IServiceRequest";
 import ServiceRequestService from "./serviceRequestService";
-import SchedulerService from "./schedulerService";
-import { LinkedList } from "linked-list-typescript";
-import { IServiceRequestStatus } from "@/interfaces/IServiceRequestStatus";
 
 import { STATUS } from "./serviceRequestService";
 
 @Service()
 export default class TrainService {
-  // private ServiceRequest = Container.get(ServiceRequestService);
-  // private Scheduler = Container.get(SchedulerService);
-
   public name: number;
   public terminal: number;
   public direction: number;
@@ -30,7 +21,7 @@ export default class TrainService {
     this.requestQueue = new Queue<null>();
   }
 
-  move() {
+  async move() {
     if (this.requestQueue.length === 0) return;
 
     var request = this.requestQueue.front; // requests are processed in queue to prevent starvation of some request. random/closest request processing might give better performance/service time.

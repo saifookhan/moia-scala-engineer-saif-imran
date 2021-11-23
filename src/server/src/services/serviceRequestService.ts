@@ -1,4 +1,4 @@
-import Container, { Service } from "typedi";
+import { Service } from "typedi";
 
 export enum STATUS {
   NOT_STATED = "NOT_STATED",

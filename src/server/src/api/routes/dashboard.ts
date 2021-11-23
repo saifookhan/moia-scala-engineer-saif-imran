@@ -1,16 +1,10 @@
 import { Router, Request, Response } from "express";
-import winston from "winston";
-import Container from "typedi";
-import DashboardService from "../../services/dashboardService";
 import LoggerInstance from "../../loaders/logger";
 
 const route = Router();
 
 export default (app: Router) => {
   app.use("/dashboard", route);
-  const Logger = Container.set("logger", LoggerInstance);
-
-  const service: DashboardService = Container.get(DashboardService);
 
   route.get(
     "/",
@@ -20,7 +14,6 @@ export default (app: Router) => {
         LoggerInstance.info("get /dashboard called");
 
         await req.app.locals.scheduler.proceed();
-        // const currentStatus = await service.getCurrentState();
         const currentStatus = await req.app.locals.scheduler.getAllTrainsStats();
 
         return res.status(200).send(currentStatus);

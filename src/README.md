@@ -19,6 +19,10 @@ There are two main projects to run.
 
 Then open `http://localhost:3000` in your browser.
 
+#### Requirements:
+
+NodeJS version: v14.17.3
+
 ### Overview
 
 - The solution is broken down into two main sections:

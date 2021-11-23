@@ -1,17 +1,8 @@
-import Container, { Service } from "typedi";
+import { Service } from "typedi";
 import { ITrainInfo } from "../interfaces/ITrainInfo";
-import SchedulerService from "./schedulerService";
 
 @Service()
 export default class DashboardService {
-  private TrainInfoModel: ITrainInfo | undefined;
-
-  private getDeviceInfoModel = (): ITrainInfo => {
-    if (!this.TrainInfoModel)
-      this.TrainInfoModel = Container.get("deviceInfoModel");
-    return this.TrainInfoModel!;
-  };
-
   getCurrentState = async (): Promise<any> => {
     try {
       var positions: ITrainInfo[] = [].concat(

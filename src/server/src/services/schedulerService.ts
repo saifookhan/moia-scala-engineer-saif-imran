@@ -2,6 +2,9 @@ import IServiceRequest from "../interfaces/IServiceRequest";
 import { Service } from "typedi";
 import ServiceRequestService from "./serviceRequestService";
 import TrainService from "./trainService";
+import IAllTrainsInfo from "./../interfaces/IAllTrainsInfo";
+
+import { MAX_TERMINALS, MAX_TRAINS } from "../constants/constants";
 
 @Service()
 export default class SchedulerService {
@@ -10,14 +13,14 @@ export default class SchedulerService {
   MAX_TRAINS: number;
 
   constructor() {
-    this.trains = new Array(32).fill(null).map((v, i) => {
+    this.trains = new Array(MAX_TRAINS).fill(null).map((_, i) => {
       return new TrainService(i);
     });
-    this.MAX_TERMINAL = 32;
-    this.MAX_TRAINS = 32;
+    this.MAX_TERMINAL = MAX_TERMINALS;
+    this.MAX_TRAINS = MAX_TRAINS;
   }
 
-  async scheduleRequest(request: IServiceRequest) {
+  async scheduleRequest(request: IServiceRequest): Promise<void> {
     this.checkServiceReq(request);
     var minCostTrain: TrainService = null;
     var minCost = Number.MAX_VALUE;
@@ -42,17 +45,17 @@ export default class SchedulerService {
     );
   }
 
-  private checkServiceReq = (req: IServiceRequest) => {
+  private checkServiceReq = (req: IServiceRequest): void => {
     if (!req.startTerminal || !req.endTerminal) throw Error("values missing");
   };
 
-  public proceed() {
+  public async proceed(): Promise<void> {
     for (const train of this.trains) {
-      train.move();
+      await train.move();
     }
   }
 
-  public async getAllTrainsStats() {
+  public async getAllTrainsStats(): Promise<IAllTrainsInfo[]> {
     var trains = this.trains;
 
     return await Promise.all(

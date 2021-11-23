@@ -11,15 +11,7 @@ if (envFound.error) {
 }
 
 export default {
-  /**
-   * Your favorite port
-   */
   port: parseInt(process.env.PORT, 10),
-
-  /**
-   * That long string from mlab
-   */
-  databaseURL: process.env.MONGODB_URI,
 
   /**
    * Used by winston logger
@@ -28,9 +20,6 @@ export default {
     level: process.env.LOG_LEVEL || "silly",
   },
 
-  /**
-   * API configs
-   */
   api: {
     prefix: "/api",
   },

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Table } from "react-bootstrap";
 import { DashboardContext } from "./../contexts";
 
 import Row from "./Row";
 
-function StatusTable(props) {
+function StatusTable() {
   const { dashboardState } = useContext(DashboardContext);
 
   const terminalColumns = Array.from({ length: 32 }).map((_, index) => {

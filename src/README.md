@@ -1,8 +1,11 @@
 # Coding Challenge - Solution
 
 Railway dispatching system for the WunderReise GmbH. Solution by Saif Imran.
+Now online on Heroku: https://moia-challenge-fe.herokuapp.com/
 
 ## Solution Specification
+
+![Recording of the app](./docs/recording.gif)
 
 ### How to run?
 
@@ -29,8 +32,10 @@ NodeJS version: v14.17.3
 
   1. server
 
-     - Uess REST apis for endpoints visibility
-     - to be filled
+     - Handles the main business logic of the scheduler.
+     - Uess REST apis for endpoints exposure.
+     - Code is broken into modules for better readibility.
+     - Specific type interfaces are used for return types.
 
   2. ui
      - compromises of a table view with Train name, terminal info, train direction, number of passengers.
@@ -46,11 +51,17 @@ NodeJS version: v14.17.3
     - Train is going from 2 to 20
     - Another request comes from 4 to 9
     - The request will be added to the queue of this train because it is already going in this direction.
-- The clock tick is incremented with every request of `getAllTrains()`
+- The clock tick is incremented with every request of `getAllTrains()` (dashboard update every two seconds).
 
 ### What could be done better?
 
 - The `direction` property could be `Boolean` instead of an integer.
+- Missed on endpoint where it was asked to change the state of a specific train.
+  - How I would've done is that added a reset button. Which will ask all the passengers to get off from the train.
+
+### Challeneges
+
+- Two projects in one repository made it hard to deploy on Heroku.
 -
 
 =========

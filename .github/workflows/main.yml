@@ -21,13 +21,14 @@ jobs:
       - uses: actions/checkout@v1
       - name: Release API
         uses: akhileshns/heroku-deploy@v3.0.4 # This is the action
+        run: git subtree push --prefix server heroku-api master
         with:
           heroku_api_key: 23f34223-647a-4ddb-a455-7feb56945dab
           heroku_app_name: moia-challenge-be #Must be unique in Heroku
           heroku_email: isaifookhan@gmail.com
         env:
           NODE_ENV: "production"
-          HD_APP_BASE: "src/server"
+          # HD_APP_BASE: "src/server"
       - name: Release UI
         uses: akhileshns/heroku-deploy@v3.0.4 # This is the action
         with:

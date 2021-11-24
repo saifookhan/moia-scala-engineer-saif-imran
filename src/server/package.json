@@ -6,7 +6,7 @@
     "start": "node --icu-data-dir=node_modules/full-icu build/index.js",
     "start-dev": "nodemon",
     "test": "jest",
-    "deploy": "cd .. && cd .. && git subtree push --prefix src/server heroku main && cd src/server"
+    "deploy": "cd .. && cd .. && git subtree push --prefix src/server heroku-be main && cd src/server"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

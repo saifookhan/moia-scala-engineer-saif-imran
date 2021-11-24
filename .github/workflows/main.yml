@@ -6,35 +6,34 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Add api remote origin
-        run: |
-          git init && git remote add heroku-api https://heroku:23f34223-647a-4ddb-a455-7feb56945dab@git.heroku.com/moia-challenge-be.git
-      - name: Deploy api to Heroku
-        run: |
-          git subtree push --prefix src/server heroku-api main
-      - name: Add frontend remote origin
-        run: |
-          git init && git remote add heroku-frontend https://heroku:23f34223-647a-4ddb-a455-7feb56945dab@git.heroku.com/moia-challenge-fe.git
-      - name: Deploy frontend to Heroku
-        run: |
-          git subtree push --prefix ./src/ui heroku-frontend main
-      # - uses: actions/checkout@v1
-      # - name: Release API
-      #   run: git subtree push --prefix server heroku-api master
-      #   uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-      #   with:
-      #     heroku_api_key: 23f34223-647a-4ddb-a455-7feb56945dab
-      #     heroku_app_name: moia-challenge-be #Must be unique in Heroku
-      #     heroku_email: isaifookhan@gmail.com
-      #   env:
-      #     NODE_ENV: production
-      #     HD_APP_BASE: src/server
-      # - name: Release UI
-      #   uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-      #   with:
-      #     heroku_api_key: 23f34223-647a-4ddb-a455-7feb56945dab
-      #     heroku_app_name: moia-challenge-fe
-      #     heroku_email: isaifookhan@gmail.com
-      #   env:
-      #     NODE_ENV: production
-      #     HD_APP_BASE: src/ui
+      # - name: Add api remote origin
+      #   run: |
+      #     git init && git remote add heroku-api https://heroku:23f34223-647a-4ddb-a455-7feb56945dab@git.heroku.com/moia-challenge-be.git
+      # - name: Deploy api to Heroku
+      #   run: |
+      #     git subtree push --prefix src/server heroku-api main
+      # - name: Add frontend remote origin
+      #   run: |
+      #     git init && git remote add heroku-frontend https://heroku:23f34223-647a-4ddb-a455-7feb56945dab@git.heroku.com/moia-challenge-fe.git
+      # - name: Deploy frontend to Heroku
+      #   run: |
+      #     git subtree push --prefix ./src/ui heroku-frontend main
+      - uses: actions/checkout@v1
+      - name: Release API
+        uses: akhileshns/heroku-deploy@v3.0.4 # This is the action
+        with:
+          heroku_api_key: 23f34223-647a-4ddb-a455-7feb56945dab
+          heroku_app_name: moia-challenge-be #Must be unique in Heroku
+          heroku_email: isaifookhan@gmail.com
+        env:
+          NODE_ENV: "production"
+          HD_APP_BASE: "src/server"
+      - name: Release UI
+        uses: akhileshns/heroku-deploy@v3.0.4 # This is the action
+        with:
+          heroku_api_key: 23f34223-647a-4ddb-a455-7feb56945dab
+          heroku_app_name: moia-challenge-fe
+          heroku_email: isaifookhan@gmail.com
+        env:
+          NODE_ENV: "production"
+          HD_APP_BASE: "src/ui"

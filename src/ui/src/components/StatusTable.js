@@ -20,7 +20,8 @@ function StatusTable() {
           <tr>
             <th>#</th>
             <th>Direction</th>
-            <th>Passengers</th>
+            <th>Passenger Requests</th>
+            <th>T/</th>
             {terminalColumns.map((val, index) => (
               <th key={val.dataIndex}>{val.dataIndex}</th>
             ))}

@@ -12,7 +12,16 @@ const Row = (props) => {
   }, [props]);
 
   return (
-    <tr style={{ backgroundColor: trainDirection ? "#bae7ff" : "#a0d911" }}>
+    <tr
+      style={{
+        backgroundColor:
+          trainPassengers === 0
+            ? "#f0f0f0"
+            : trainDirection
+            ? "#bae7ff"
+            : "#a0d911",
+      }}
+    >
       <td>{props.name}</td>
       <td>{trainDirection ? "RIGHT" : "LEFT"}</td>
       <td>{trainPassengers}</td>

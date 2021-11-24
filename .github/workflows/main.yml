@@ -11,7 +11,7 @@ jobs:
           git init && git remote add heroku-api https://heroku:23f34223-647a-4ddb-a455-7feb56945dab@git.heroku.com/moia-challenge-be.git
       - name: Deploy api to Heroku
         run: |
-          git subtree push --prefix ./src/server heroku-api main
+          git subtree push --prefix src/server heroku-api main
       - name: Add frontend remote origin
         run: |
           git init && git remote add heroku-frontend https://heroku:23f34223-647a-4ddb-a455-7feb56945dab@git.heroku.com/moia-challenge-fe.git

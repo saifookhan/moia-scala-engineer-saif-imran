@@ -2,10 +2,12 @@
   "main": "src/app.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./build/ && tsc",
     "heroku-postbuild": "npm run build",
-    "start": "nodemon",
-    "test": "jest"
+    "start": "node --icu-data-dir=node_modules/full-icu build/index.js",
+    "start-dev": "nodemon",
+    "test": "jest",
+    "deploy": "git subtree push --prefix src/server heroku main"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

@@ -1,5 +1,6 @@
 {
   "main": "src/app.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "heroku-postbuild": "npm run build",

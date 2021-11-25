@@ -25,7 +25,8 @@ const Row = (props) => {
       <td>{props.name}</td>
       <td>{trainDirection ? "RIGHT" : "LEFT"}</td>
       <td>{trainPassengers}</td>
-      {Array.from({ length: 32 }).map((_, index) => (
+      {/* parking + 32 */}
+      {Array.from({ length: 33 }).map((_, index) => (
         <td key={index}>{trainPosition === index ? "🚆" : " "}</td>
       ))}
     </tr>

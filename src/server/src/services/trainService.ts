@@ -43,7 +43,7 @@ export default class TrainService {
     }
 
     var nextTerminal = this.terminal + this.direction;
-    this.terminal = Math.max(0, Math.min(nextTerminal, 31));
+    this.terminal = Math.max(1, Math.min(nextTerminal, 32));
 
     var uncompletedRequests: Queue<ServiceRequestService> = new Queue<
       ServiceRequestService

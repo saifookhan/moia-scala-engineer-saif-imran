@@ -66,7 +66,7 @@ export default class TrainService {
     this.requestQueue.enqueue(serviceRequest);
   }
 
-  async getServiceCost(serviceRequest: IServiceRequest): Promise<Number> {
+  async getServiceCost(serviceRequest: IServiceRequest): Promise<number> {
     var startTerminal = serviceRequest.startTerminal;
     var endTerminal = serviceRequest.endTerminal;
     var currentTerminal = this.terminal;
@@ -77,7 +77,7 @@ export default class TrainService {
     );
   }
 
-  public async getRequestCount(): Promise<Number> {
+  public async getRequestCount(): Promise<number> {
     return this.requestQueue.length;
   }
 

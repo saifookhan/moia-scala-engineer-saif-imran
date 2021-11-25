@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
+      - run: npm --prefix /src/server  ci
       - run: npm --prefix /src/server run build --if-present
       - run: npm --prefix /src/server test
         env:

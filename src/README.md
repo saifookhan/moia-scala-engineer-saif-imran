@@ -28,7 +28,7 @@ NodeJS version: v14.17.3
 
 ### Overview
 
-- The solution is broken down into two main sections:
+- The solution is broken down into three main sections:
 
   1. server
 
@@ -41,6 +41,10 @@ NodeJS version: v14.17.3
      - compromises of a table view with Train name, terminal info, train direction, number of passengers.
      - the UI updates every two seconds.
      - A form is available for adding a request.
+     -
+  3. ci/cd
+     - Github actions are used for auto deployment of code on Heroku.
+     - Automated tests are also run in Github Actions.
 
 ### How algorithm works?
 
@@ -59,17 +63,14 @@ NodeJS version: v14.17.3
 - Missed on endpoint where it was asked to change the state of a specific train.
   - How I would've done is that added a reset button. Which will ask all the passengers to get off from the train.
 - I also wanted to add the functionality for `requestedTime` but couldn't complete it.
+- Some logging in the frontend console could be hidden.
 
 ### Challeneges
 
-- Two projects in one repository made it hard to deploy on Heroku.
--
+- Two projects in one repository made it hard to deploy on Heroku. I used git subtree for this.
 
 =========
 
-They have the following requirements to be fullfilled
+#### Project in progress. :)
 
-- Furthermore, an endpoint is required that allows a train to update its state within the scheduling system.
-
-- How clean is your design and implementation, how easy it is to understand and maintain your code.
-- How you verified your software, if by automated tests or some other way.
+![Recording of the app](./docs/photo.jpg)

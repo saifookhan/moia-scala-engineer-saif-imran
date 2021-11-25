@@ -1,4 +1,4 @@
-export default interface ITrainInfo {
+export default interface IAllTrainInfo {
   name: number;
   terminal: number;
   direction: boolean;

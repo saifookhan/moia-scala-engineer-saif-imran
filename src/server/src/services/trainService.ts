@@ -5,6 +5,7 @@ import IServiceRequest from "../interfaces/IServiceRequest";
 import ServiceRequestService from "./serviceRequestService";
 
 import { STATUS } from "./serviceRequestService";
+import IAllTrainInfo from "@/interfaces/IAllTrainsInfo";
 
 @Service()
 export default class TrainService {
@@ -21,7 +22,7 @@ export default class TrainService {
     this.requestQueue = new Queue<null>();
   }
 
-  async move() {
+  async move(): Promise<void> {
     if (this.requestQueue.length === 0) return;
 
     var request = this.requestQueue.front; // requests are processed in queue to prevent starvation of some request. random/closest request processing might give better performance/service time.
@@ -60,12 +61,12 @@ export default class TrainService {
     this.requestQueue = uncompletedRequests;
   }
 
-  addRequest(serviceRequest: ServiceRequestService) {
+  addRequest(serviceRequest: ServiceRequestService): void {
     serviceRequest.updateProgressStatus(this.terminal);
     this.requestQueue.enqueue(serviceRequest);
   }
 
-  async getServiceCost(serviceRequest: IServiceRequest) {
+  async getServiceCost(serviceRequest: IServiceRequest): Promise<Number> {
     var startTerminal = serviceRequest.startTerminal;
     var endTerminal = serviceRequest.endTerminal;
     var currentTerminal = this.terminal;
@@ -76,11 +77,11 @@ export default class TrainService {
     );
   }
 
-  public async getRequestCount() {
+  public async getRequestCount(): Promise<Number> {
     return this.requestQueue.length;
   }
 
-  public async getTrainInfo() {
+  public async getTrainInfo(): Promise<IAllTrainInfo> {
     console.log({
       name: this.name,
       terminal: this.terminal,

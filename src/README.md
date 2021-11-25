@@ -38,10 +38,9 @@ NodeJS version: v14.17.3
      - Specific type interfaces are used for return types.
 
   2. ui
-     - compromises of a table view with Train name, terminal info, train direction, number of passengers.
-     - the UI updates every two seconds.
+     - Compromises of a table view with Train name, terminal info, train direction, number of passengers.
+     - The UI updates every two seconds.
      - A form is available for adding a request.
-     -
   3. ci/cd
      - Github actions are used for auto deployment of code on Heroku.
      - Automated tests are also run in Github Actions.
@@ -59,18 +58,23 @@ NodeJS version: v14.17.3
 
 ### What could be done better?
 
-- The `direction` property could be `Boolean` instead of an integer.
+- The `direction` property could be of ENUM (left, right) instead of an integer.
 - Missed on endpoint where it was asked to change the state of a specific train.
   - How I would've done is that added a reset button. Which will ask all the passengers to get off from the train.
 - I also wanted to add the functionality for `requestedTime` but couldn't complete it.
 - Some logging in the frontend console could be hidden.
+- I should'be squashed my commits before merging to main from the feature branches.
 
-### Challeneges
+### Challenges
 
 - Two projects in one repository made it hard to deploy on Heroku. I used git subtree for this.
 
 =========
 
 #### Project in progress. :)
+
+Worked on the project during my flight.
+Throughly enjoyed working on the challenge.
+Thanks for the opporunity.
 
 ![Recording of the app](./docs/photo.jpg)

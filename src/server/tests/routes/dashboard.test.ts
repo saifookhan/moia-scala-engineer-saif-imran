@@ -35,7 +35,7 @@ describe("Dashboard Endpoint", () => {
     });
 
     it("should return non initialized values", async (done) => {
-      const serviceRequestResx = await request(app)
+      await request(app)
         .post("/api/train/request")
         .send(getDefaultTrainRequest());
 

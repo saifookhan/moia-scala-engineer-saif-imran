@@ -19,8 +19,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: sudo npm --prefix /src/server ci
-      - run: sudo npm --prefix /src/server run build --if-present
-      - run: sudo npm --prefix /src/server test
+      - run: sudo npm --prefix ./src/server ci
+      - run: sudo npm --prefix ./src/server run build --if-present
+      - run: sudo npm --prefix ./src/server test
         env:
           CI: true

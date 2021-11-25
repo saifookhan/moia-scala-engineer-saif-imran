@@ -58,6 +58,7 @@ NodeJS version: v14.17.3
 - The `direction` property could be `Boolean` instead of an integer.
 - Missed on endpoint where it was asked to change the state of a specific train.
   - How I would've done is that added a reset button. Which will ask all the passengers to get off from the train.
+- I also wanted to add the functionality for `requestedTime` but couldn't complete it.
 
 ### Challeneges
 

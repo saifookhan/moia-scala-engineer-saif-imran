@@ -1,6 +1,6 @@
 import config from "./config";
 
-import express from "express";
+const express = require("express");
 
 import Logger from "./loaders/logger";
 
@@ -25,6 +25,9 @@ async function startServer() {
       Logger.error(err);
       process.exit(1);
     });
+  return app;
 }
 
-startServer();
+const server = startServer();
+
+export default server;
